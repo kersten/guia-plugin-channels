@@ -1,0 +1,24 @@
+<div class="page-header" style="position: fixed; top: 40; margin: 0; margin-top: -20px; padding: 38px 0 18px 0; width: 940px; zIndex: 999;background: #FFF;">
+    <div style="float: right;">
+        <div class="btn-group">
+            <a class="btn dropdown-toggle" data-toggle="dropdown">
+                <img src="/logo/<&= model.get('name') &>" style="height: 10px;" /> <&= model.get('name') &>
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <& _.each(channels.models, function (channel) { &>
+                <li>
+                    <a href="/!/Channels/<&= channel.get('_id') &>" data-_id="<&= channel.get('_id') &>">
+                        <img src="/logo/<&= channel.get('name') &>" style="height: 10px;" /> <&= channel.get('name') &>
+                    </a>
+                </li>
+                <& }); &>
+            </ul>
+        </div>
+    </div>
+    <h1><&= $.t("ns.plugin.channels:title", {channel: model.get('name')}) &></h1>
+</div>
+
+<div class="row" style="min-height: 200px; padding-top: 75px;">
+
+</div>
