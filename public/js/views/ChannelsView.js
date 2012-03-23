@@ -7,7 +7,8 @@ var ChannelsView = Backbone.View.extend({
 
     initialize: function () {
         "use strict";
-        var self = this;
+
+        var _this = this;
 
         this.collection = new ChannelCollection();
 
@@ -15,25 +16,26 @@ var ChannelsView = Backbone.View.extend({
             data: {
                 active: true
             }, success: function (collection) {
-                if (self.options.channel !== undefined) {
-                    self.model = collection.get(self.options.channel);
+                if (_this.options.channel !== undefined) {
+                    _this.model = collection.get(_this.options.channel);
                 } else {
-                    self.model = collection.models[0];
+                    _this.model = collection.models[0];
                 }
 
-                var template = _.template($('#' + self.template).html(), {channels: collection, model: self.model});
-                $(self.el).html(template);
+                var template = _.template($('#' + _this.template).html(), {channels: collection, model: _this.model});
+                $(_this.el).html(template);
 
                 var top = $('.page-header').offset().top - 40 - 18;
                 var floating = false;
 
-                self.getEpg();
+                _this.getEpg();
             }
         });
     },
 
     changeChannel: function (ev) {
         "use strict";
+
         ev.preventDefault();
 
         if (this.model !== undefined && this.model.get('_id') === $(ev.currentTarget).data('_id')) {
@@ -52,6 +54,7 @@ var ChannelsView = Backbone.View.extend({
 
     getEpg: function () {
         "use strict";
+
         if (this.epgView !== undefined) {
             this.epgView.remove();
         }
@@ -65,6 +68,7 @@ var ChannelsView = Backbone.View.extend({
 
     render: function () {
         "use strict";
+
         return this;
     }
 });
